@@ -1,0 +1,15 @@
+[rewrite_local]
+# 123云盘 iOS App: clean ad-related JSON fields on API responses
+^https?:\/\/(?:[^\/]+\.)?(?:123pan\.com|123pan\.cn|123684\.com|123865\.com|123952\.com|123912\.com)\/(?:b\/)?api\/.*(?:\?.*)?$ url script-response-body https://raw.githubusercontent.com/HYJ1817/-/refs/heads/main/123pan-qx-adblock.js
+
+# Telemetry / reporting endpoints
+^https?:\/\/(?:[^\/]+\.)?(?:123pan\.com|123pan\.cn|123684\.com|123865\.com|123952\.com|123912\.com)\/transfer\/metrics\/whether\/report(?:\?.*)?$ url reject-200
+^https?:\/\/(?:[^\/]+\.)?(?:123pan\.com|123pan\.cn|123684\.com|123865\.com|123952\.com|123912\.com)\/api\/metrics\/up(?:\?.*)?$ url reject-200
+^https?:\/\/(?:[^\/]+\.)?(?:123pan\.com|123pan\.cn|123684\.com|123865\.com|123952\.com|123912\.com)\/video\/metrics\/whether\/report(?:\?.*)?$ url reject-200
+^https?:\/\/(?:[^\/]+\.)?(?:123pan\.com|123pan\.cn|123684\.com|123865\.com|123952\.com|123912\.com)\/api\/video\/metrics(?:\?.*)?$ url reject-200
+^https?:\/\/(?:[^\/]+\.)?(?:123pan\.com|123pan\.cn|123684\.com|123865\.com|123952\.com|123912\.com)\/restful\/goapi\/v1\/content\/payment\/purchase-status(?:\?.*)?$ url reject-200
+^https?:\/\/(?:[^\/]+\.)?shujupie\.(?:com|net)\/.*\/web_logs(?:\?.*)?$ url reject-200
+^https?:\/\/(?:[^\/]+\.)?arms-retcode\.[^\/]+\/r\.png(?:\?.*)?$ url reject-200
+
+[mitm]
+hostname = %APPEND% *.123pan.com, *.123pan.cn, *.123684.com, *.123865.com, *.123952.com, *.123912.com, *.shujupie.com, *.shujupie.net, arms-retcode.aliyuncs.com
