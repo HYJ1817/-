@@ -1,0 +1,31 @@
+// 检查响应体是否存在
+if (typeof $response !== "undefined" && $response.body) {
+    try {
+        let obj = JSON.parse($response.body);
+        
+        // 针对用户信息接口的全面修改
+        if (obj.data) {
+            // 基础状态
+            obj.data.vip = true;
+            obj.data.isVip = 1;
+            obj.data.vipType = "1"; // 1 通常代表永久或高级会员
+            
+            // 时间处理
+            obj.data.expiredAt = "2099-12-31 23:59:59";
+            obj.data.vipExpireDay = "2099-12-31";
+            
+            // 空间与显示
+            obj.data.symbol = "青春版会员";
+            if (obj.data.space_info) {
+                obj.data.space_info.total_capacity = 107374182400; // 虚拟增加空间显示
+            }
+        }
+        
+        $done({ body: JSON.stringify(obj) });
+    } catch (e) {
+        // 解析失败则返回原始数据，避免网络中断
+        $done({});
+    }
+} else {
+    $done({});
+}
