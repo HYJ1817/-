@@ -1,0 +1,8 @@
+# 123云盘重写资源
+# 包含 MitM 主机名和脚本重写规则
+
+hostname = www.123pan.com, api.123pan.com
+
+[rewrite_local]
+# 匹配用户信息接口
+^https?://.*https://www.google.com/search?q=123pan.com/api/v2/user/info url script-response-body https://raw.githubusercontent.com/HYJ1817/-/refs/heads/main/gemini%E7%BB%99%E7%9A%84%E4%BC%BC%E4%B9%8E%E4%BC%9A%E5%91%98%E9%9D%92%E6%98%A5%E7%89%88
